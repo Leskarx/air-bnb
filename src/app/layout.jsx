@@ -1,4 +1,4 @@
-import NavBar from "@/components/NavBar";
+import NavBar from "../components/navbar/NavBar";
 import { Inter,Nunito } from "next/font/google";
 import "./globals.css";
 
