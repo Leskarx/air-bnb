@@ -5,8 +5,15 @@ import {useState} from 'react'
 import { AiOutlineMenu} from "react-icons/ai";
 import Avatar from '../Avatar';
 import MenuItems from './MenuItems';
+import {usePopOut} from "../../context/popOutContext"
+
+
+
 
 export default function UserMenu() {
+  const {isOpen,toggleIsOpen}=usePopOut()
+  console.log(isOpen);
+
     const [toggle,setToggle]=useState(false)
   return (
     <div >
@@ -26,8 +33,8 @@ export default function UserMenu() {
          <div className=' top-12 right-0 w-[40vw] md:w-[350%]  shadow-md rounded-xl bg-white absolute overflow-hidden text-sm'>
           <div className='flex flex-col bg-green-200'>
             <>
-            <MenuItems name="Log in"/>
-            <MenuItems name="Sign up"/>
+            <MenuItems click={toggleIsOpen} name="Log in"/>
+            <MenuItems click={toggleIsOpen} name="Sign up"/>
            
             </>
 

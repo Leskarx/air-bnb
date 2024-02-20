@@ -1,8 +1,8 @@
-import NavBar from "../components/navbar/NavBar";
+
+import Main from "@/components/main/Main";
 import { Inter,Nunito } from "next/font/google";
 import "./globals.css";
-import PopOutScreen from "@/components/popOutScreen/PopOutScreen";
-import RegisterScreen from "@/components/registerScreen/RegisterScreen";
+
 
 const inter = Nunito({ subsets: ["latin"] });
 
@@ -15,8 +15,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${inter.className}   `}>
-       <RegisterScreen/>
-        <NavBar/>
+       <Main/>
         {children}
         </body>
     </html>
