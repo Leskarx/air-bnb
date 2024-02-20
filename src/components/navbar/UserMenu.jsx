@@ -11,7 +11,7 @@ import {usePopOut} from "../../context/popOutContext"
 
 
 export default function UserMenu() {
-  const {isOpen,toggleIsOpen}=usePopOut()
+  const {isOpen,toggleIsOpen,toggleOpenSection}=usePopOut()
   console.log(isOpen);
 
     const [toggle,setToggle]=useState(false)
@@ -33,8 +33,18 @@ export default function UserMenu() {
          <div className=' top-12 right-0 w-[40vw] md:w-[350%]  shadow-md rounded-xl bg-white absolute overflow-hidden text-sm'>
           <div className='flex flex-col bg-green-200'>
             <>
+            <div onClick={()=>{
+              toggleOpenSection("login")
+            }}>
             <MenuItems click={toggleIsOpen} name="Log in"/>
+            </div>
+            <div onClick={()=>{
+              toggleOpenSection("register")
+            }}>
             <MenuItems click={toggleIsOpen} name="Sign up"/>
+            </div>
+           
+           
            
             </>
 

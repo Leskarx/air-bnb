@@ -1,7 +1,9 @@
 import { createContext,useContext } from "react";
 const popOutContext=createContext({
     isOpen:false,
-    toggleIsOpen:()=>{}
+    toggleIsOpen:()=>{},
+    openSection:"login",
+    toggleOpenSection:()=>{}
 
 })
 
