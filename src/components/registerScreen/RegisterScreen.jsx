@@ -11,8 +11,8 @@ const body=(
    <>
    <Heading title="Welcome to Air Bnd" subtitle="Create your account"/>
    <InputBox type="text" placeholder='Email'/>
-   <InputBox type="name" placeholder='Username'/>
-   <InputBox type="password" placeholder='Password'/>
+   <InputBox type="text"  placeholder='Username'/>
+   <InputBox type="password"  placeholder='Password'/>
    </>
 )
 
