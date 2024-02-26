@@ -3,7 +3,7 @@ import React from 'react'
 import {useState} from 'react'
 // import { FaSearch } from "react-icons/fa";
 import { AiOutlineMenu} from "react-icons/ai";
-import Avatar from '../Avatar';
+import Avatar from '../utils/Avatar';
 import MenuItems from './MenuItems';
 import {usePopOut} from "../../context/popOutContext"
 

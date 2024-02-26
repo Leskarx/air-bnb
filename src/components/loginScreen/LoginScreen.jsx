@@ -1,11 +1,11 @@
 import React from 'react'
-import Heading from '../Heading'
-import InputBox from '../InputBox'
+import Heading from '../utils/Heading'
+import InputBox from '../utils/InputBox'
 import PopOutScreen from '../popOutScreen/PopOutScreen'
 import {usePopOut} from "../../context/popOutContext"
 
 export default function LoginScreen() {
-  const {isOpen,toggleIsOpen}=usePopOut()
+  const {isOpen,toggleIsOpen,toggleOpenSection}=usePopOut()
 
 const body=(
    <>
@@ -14,6 +14,19 @@ const body=(
    <InputBox type="password" placeholder='Password'/>
    </>
 )
+const footer=(
+  <>
+  <div className=' text-neutral-500 text-center mt-4'>
+    <div onClick={()=>{
+toggleOpenSection("register")
+    }} className=' flex gap-2 justify-center cursor-pointer '>
+    <span>Don't have an account?</span>
+    <span className=' text-neutral-800 font-semibold'>Create</span>
+    </div>
+
+  </div>
+  </>
+)
 
 
 
@@ -21,7 +34,9 @@ const body=(
     <>
 
     {
-      isOpen &&(<PopOutScreen title="Register" buttonPlaceHolder="continue" body={body}/>)
+      isOpen &&(<PopOutScreen title="Register" buttonPlaceHolder="continue" body={body} 
+      footer={footer}
+      />)
     }
     </>
   )

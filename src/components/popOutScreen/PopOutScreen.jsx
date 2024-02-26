@@ -4,7 +4,7 @@ import {IoMdClose} from "react-icons/io"
 import ButtonC from './ButtonC'
 import {usePopOut} from "../../context/popOutContext"
 import { motion } from 'framer-motion';
-export default function PopOutScreen({title="Hello world",buttonPlaceHolder,body}) {
+export default function PopOutScreen({title="Hello world",buttonPlaceHolder,body,footer}) {
   const {isOpen,toggleIsOpen}=usePopOut()
   const variants = {
     open: { 
@@ -19,20 +19,16 @@ export default function PopOutScreen({title="Hello world",buttonPlaceHolder,body
   return (
     <div className=" fixed bg-neutral-800/70 z-50 inset-0">
      <div className='flex items-center justify-center w-full h-full'>
-      <motion.div className='  w-full sm:w-[45%] h-screen sm:h-auto sm:relative border-b-[1px]  rounded-md shadow-md bg-white'
+      <motion.div className='  w-full sm:w-[34%] h-screen sm:h-auto sm:relative border-b-[1px]  rounded-md shadow-md bg-white'
       initial={{
         y:100,
         opacity:0,
         // scale:0.8
       }}
-      exit={{ opacity: 0,
-        y:-100
-      
-      }}
       animate={isOpen ? "open" : "closed"}
       variants={variants}
       transition={{
-        delay:0.0300
+        delay:0.0500
       }}
     
       
@@ -54,10 +50,10 @@ export default function PopOutScreen({title="Hello world",buttonPlaceHolder,body
         {body}
 
       </main>
-      <footer className='p-6  relative'>
+      <footer className='p-6 flex flex-col gap-4  relative'>
         <ButtonC buttonPlaceHolder={buttonPlaceHolder}/>
 
-
+{footer}
 
       </footer>
 
