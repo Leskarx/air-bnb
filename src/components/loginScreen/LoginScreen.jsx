@@ -20,7 +20,7 @@ const footer=(
     <div onClick={()=>{
 toggleOpenSection("register")
     }} className=' flex gap-2 justify-center cursor-pointer '>
-    <span>Don't have an account?</span>
+    <span>Dont have an account?</span>
     <span className=' text-neutral-800 font-semibold'>Create</span>
     </div>
 
