@@ -4,7 +4,12 @@ import {IoMdClose} from "react-icons/io"
 import ButtonC from './ButtonC'
 import {usePopOut} from "../../context/popOutContext"
 import { motion } from 'framer-motion';
-export default function PopOutScreen({title="Hello world",buttonPlaceHolder,body,footer}) {
+export default function PopOutScreen({onSubmit,title="Hello world",buttonPlaceHolder,body,footer,
+}) {
+
+  function handleSubmit(){
+    onSubmit()
+  }
   const {isOpen,toggleIsOpen}=usePopOut()
   const variants = {
     open: { 
@@ -51,7 +56,7 @@ export default function PopOutScreen({title="Hello world",buttonPlaceHolder,body
 
       </main>
       <footer className='p-6 flex flex-col gap-4  relative'>
-        <ButtonC buttonPlaceHolder={buttonPlaceHolder}/>
+        <ButtonC onSubmit={handleSubmit} buttonPlaceHolder={buttonPlaceHolder}/>
 
 {footer}
 

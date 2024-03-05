@@ -1,3 +1,4 @@
+"use client";
 import React from 'react'
 import Heading from '../utils/Heading'
 import InputBox from '../utils/InputBox'
@@ -6,16 +7,46 @@ import {usePopOut} from "../../context/popOutContext"
 import {FcGoogle} from "react-icons/fc"
 import { AiFillGithub } from 'react-icons/ai'
 import SectionG from '../utils/SectionG'
+import { useForm } from "react-hook-form"
+import axios from 'axios';
+import toast from 'react-hot-toast';
 
 export default function RegisterScreen() {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm(
+    {
+      defaultValues:{
+        Email:"",
+        Username:"",
+        Password:"",
+
+      }
+    }
+  )
   const {isOpen,toggleIsOpen,toggleOpenSection}=usePopOut()
+  const onSubmit = (data) => {
+   
+    axios.post('/api/register', data)
+    .then(function (response) {
+      toast.success('Successfully toasted!')
+      toggleIsOpen()
+    })
+    .catch(function (error) {
+      toast.error("This didn't work.")
+    });
+
+  }
 
 const body=(
    <>
    <Heading title="Welcome to Air Bnd" subtitle="Create your account"/>
-   <InputBox type="text" placeholder='Email'/>
-   <InputBox type="text"  placeholder='Username'/>
-   <InputBox type="password"  placeholder='Password'/>
+   <InputBox register={register} errors={errors}  type="text" placeholder='Email'/>
+   <InputBox register={register} errors={errors} type="text"  placeholder='Username'/>
+   <InputBox register={register} errors={errors} type="password"  placeholder='Password'/>
    </>
 )
 const footer=(
@@ -41,7 +72,7 @@ toggleOpenSection("login")
     <>
 
     {
-      isOpen &&(<PopOutScreen title="Register" buttonPlaceHolder="continue" footer={footer} body={body}/>)
+      isOpen &&(<PopOutScreen onSubmit={handleSubmit(onSubmit)} title="Register" buttonPlaceHolder="continue" footer={footer} body={body}/>)
     }
     </>
   )
