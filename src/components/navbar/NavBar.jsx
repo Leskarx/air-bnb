@@ -1,13 +1,22 @@
+"use client";
 import Image from 'next/image'
 import Link from 'next/link';
 import SearchBar from '../navbar/SearchBar';
 import UserMenu from './UserMenu';
+import getUser from '@/app/actions/getUser';
+import { useSession } from 'next-auth/react';
 
 
-export default function NavBar() {
+
+export default function NavBar({currentUser}) {
+  const {data:session}=useSession({
+    required:false
+
+  })
  
   return (
-   <main className=' w-full bg-white fixed h-[5rem] shadow-md '>
+
+     <main className=' w-full bg-white fixed h-[5rem] shadow-md '>
     
     <section className=' h-full w-[90%] absolute left-1/2 -translate-x-1/2 flex  items-center gap-3  sm:justify-between justify-center'>
   <Link href="/">
@@ -23,9 +32,10 @@ export default function NavBar() {
   </Link>
 
  <SearchBar/>
+{/* <p>{session?.user?.email}</p> */}
 
     {/* login signup button */}
- <UserMenu/>
+ <UserMenu currentUser={currentUser}/>
 
    
         
@@ -33,5 +43,6 @@ export default function NavBar() {
 
 
    </main>
+ 
   )
 }

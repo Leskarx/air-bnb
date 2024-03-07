@@ -6,13 +6,21 @@ import { AiOutlineMenu} from "react-icons/ai";
 import Avatar from '../utils/Avatar';
 import MenuItems from './MenuItems';
 import {usePopOut} from "../../context/popOutContext"
+import { signOut } from 'next-auth/react';
 
 
 
 
-export default function UserMenu() {
+export default function UserMenu({currentUser}) {
+
+function signOutFunction(params) {
+  signOut()
+  
+}
+
+  // console.log("menu........",currentUser);
   const {isOpen,toggleIsOpen,toggleOpenSection}=usePopOut()
-  console.log(isOpen);
+  // console.log(isOpen);
 
     const [toggle,setToggle]=useState(false)
   return (
@@ -33,16 +41,22 @@ export default function UserMenu() {
          <div className=' top-12 right-0 w-[40vw] md:w-[350%]  shadow-md rounded-xl bg-white absolute overflow-hidden text-sm'>
           <div className='flex flex-col bg-green-200'>
             <>
-            <div onClick={()=>{
-              toggleOpenSection("login")
-            }}>
-            <MenuItems click={toggleIsOpen} name="Log in"/>
-            </div>
-            <div onClick={()=>{
-              toggleOpenSection("register")
-            }}>
-            <MenuItems click={toggleIsOpen} name="Sign up"/>
-            </div>
+            {(currentUser)? <div>
+
+            <MenuItems click={signOutFunction} name="Log out"/>
+              
+              </div>
+            
+            : <div><div onClick={()=>{
+  toggleOpenSection("login")
+}}>
+<MenuItems click={toggleIsOpen} name="Log in"/>
+</div>
+<div onClick={()=>{
+  toggleOpenSection("register")
+}}>
+<MenuItems click={toggleIsOpen} name="Sign up"/>
+</div></div>}
            
            
            
@@ -53,8 +67,12 @@ export default function UserMenu() {
      </div>
        )
      }
+    
  
      </button>
     </div>
   )
 }
+
+
+{/*  */}

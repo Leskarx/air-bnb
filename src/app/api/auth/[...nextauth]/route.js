@@ -1,7 +1,10 @@
 import NextAuth from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
+import { PrismaAdapter } from "@auth/prisma-adapter"
+import prisma from "@/app/libs/prismadb"
 
 export const authOptions = {
+    // adapter: PrismaAdapter(prisma),
     providers: [
         CredentialsProvider({
             // The name to display on the sign in form (e.g. 'Sign in with...')
@@ -12,9 +15,20 @@ export const authOptions = {
                 password: { label: "Password", type: "password" }
             },
             async authorize(credentials) {
+                const userr = await prisma.user.findUnique({
+                    where: {
+                        email: credentials.Email
+                    }
+                })
 
-                console.log(credentials);
-                const user = { id: 1, name: 'J Smith', email: 'jsmith@example.com' }
+                console.log(userr);
+                const user = {
+                    id: 1,
+                    name: {
+                        ...userr
+                    }
+                }
+
                 if (user) {
                     // Any object returned will be saved in `user` property of the JWT
                     return user
@@ -26,8 +40,9 @@ export const authOptions = {
             }
         })
 
-    ]
+    ],
 
+    secret: process.env.NEXTAUTH_SECRET,
 
 }
 

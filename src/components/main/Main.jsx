@@ -6,9 +6,10 @@ import PopOutScreen from "@/components/popOutScreen/PopOutScreen";
 import RegisterScreen from "@/components/registerScreen/RegisterScreen";
 import NavBar from "../navbar/NavBar";
 import LoginScreen from "../loginScreen/LoginScreen";
+import { SessionProvider } from 'next-auth/react';
 
-
-export default function Main() {
+export default function Main({currentUser}) {
+  
     const [isOpen,setOpen]=useState(false)
     const [openSection,setopenSection]=useState("login")
     function toggleOpenSection(value){
@@ -21,7 +22,8 @@ export default function Main() {
     }
 
   return (
-   <PopOutprovider value={{isOpen,toggleIsOpen,openSection,toggleOpenSection}}>
+    <SessionProvider>
+      <PopOutprovider value={{isOpen,toggleIsOpen,openSection,toggleOpenSection}}>
     {
        ( openSection=="login")?  <LoginScreen/>:<RegisterScreen/>
     }
@@ -31,8 +33,11 @@ export default function Main() {
   reverseOrder={false}
 />
  
-        <NavBar/>
+        <NavBar currentUser={currentUser?.user?.name} />
 
    </PopOutprovider>
+
+    </SessionProvider>
+   
   )
 }

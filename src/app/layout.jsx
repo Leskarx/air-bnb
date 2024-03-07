@@ -1,6 +1,7 @@
 
 import Main from "@/components/main/Main";
 import { Inter,Nunito } from "next/font/google";
+import getUser from "./actions/getUser";
 
 import "./globals.css";
 
@@ -13,11 +14,16 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }) {
+  const user =await getUser()
+  console.log(".......",user);
 
   return (
     <html lang="en">
-      <body className={`${inter.className} relative   `}>
-       <Main/>
+      <body className={`${inter.className}    `}>
+       <Main currentUser={user}/>
+       <div className=" absolute top-1/2">
+        {user?.user?.name?.name}
+       </div>
    
         {children}
         </body>
