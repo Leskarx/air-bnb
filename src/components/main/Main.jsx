@@ -33,7 +33,7 @@ export default function Main({currentUser}) {
   reverseOrder={false}
 />
  
-        <NavBar currentUser={currentUser?.user?.name} />
+        <NavBar currentUser={currentUser} />
 
    </PopOutprovider>
 

@@ -22,7 +22,7 @@ export default async function RootLayout({ children }) {
       <body className={`${inter.className}    `}>
        <Main currentUser={user}/>
        <div className=" absolute top-1/2">
-        {user?.user?.name?.name}
+        {user?.user?.name}
        </div>
    
         {children}

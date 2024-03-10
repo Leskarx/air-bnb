@@ -2,10 +2,16 @@ import NextAuth from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
 import { PrismaAdapter } from "@auth/prisma-adapter"
 import prisma from "@/app/libs/prismadb"
+import GitHubProvider from "next-auth/providers/github";
 
 export const authOptions = {
     // adapter: PrismaAdapter(prisma),
     providers: [
+        GitHubProvider({
+            clientId: process.env.GITHUB_ID,
+            clientSecret: process.env.GITHUB_SECRET
+        }),
+
         CredentialsProvider({
             // The name to display on the sign in form (e.g. 'Sign in with...')
             name: 'Credentials',
@@ -21,17 +27,16 @@ export const authOptions = {
                     }
                 })
 
-                console.log(userr);
-                const user = {
-                    id: 1,
-                    name: {
-                        ...userr
-                    }
-                }
+                console.log("hellliooooooooo", userr);
+                // const user = {
+                //     id: 1,
+                //     name: userr.name,
+                //     email: credentials.Email
+                // }
 
-                if (user) {
+                if (userr) {
                     // Any object returned will be saved in `user` property of the JWT
-                    return user
+                    return userr
                 } else {
                     // If you return null or false then the credentials will be rejected
                     return null
@@ -43,6 +48,7 @@ export const authOptions = {
     ],
 
     secret: process.env.NEXTAUTH_SECRET,
+    debug: true
 
 }
 

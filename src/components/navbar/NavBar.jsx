@@ -5,10 +5,12 @@ import SearchBar from '../navbar/SearchBar';
 import UserMenu from './UserMenu';
 import getUser from '@/app/actions/getUser';
 import { useSession } from 'next-auth/react';
+import CategoriesSection from './CategoriesSection';
 
 
 
 export default function NavBar({currentUser}) {
+  console.log("navbar....",currentUser);
   const {data:session}=useSession({
     required:false
 
@@ -40,6 +42,8 @@ export default function NavBar({currentUser}) {
    
         
     </section>
+<CategoriesSection/>
+    
 
 
    </main>

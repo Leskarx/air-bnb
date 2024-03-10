@@ -50,8 +50,8 @@ const body=(
 )
 const footer=(
   <>
-   <SectionG lable="Continue with Google" Logo={FcGoogle}/>
-  <SectionG lable="Continue with Github" Logo={AiFillGithub}/>
+   <SectionG lable="Continue with Google" provider="github" Logo={FcGoogle}/>
+  <SectionG lable="Continue with Github" provider="github" Logo={AiFillGithub}/>
   <div className=' text-neutral-500 text-center mt-4'>
     <div onClick={()=>{
 toggleOpenSection("register")

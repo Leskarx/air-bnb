@@ -18,7 +18,7 @@ function signOutFunction(params) {
   
 }
 
-  // console.log("menu........",currentUser);
+  console.log("menu........",currentUser);
   const {isOpen,toggleIsOpen,toggleOpenSection}=usePopOut()
   // console.log(isOpen);
 
@@ -30,7 +30,7 @@ function signOutFunction(params) {
      }} className='p-3 bg-white sm:py-1 sm:px-2 hover:shadow-md transition  cursor-pointer *: rounded-full border border-neutral-200 shadow-md flex justify-center items-center gap-3 relative '>
      <AiOutlineMenu />
      <div className='hidden sm:block'>
-      <Avatar/>
+      <Avatar currentUser={currentUser}/>
     
 
      </div>
